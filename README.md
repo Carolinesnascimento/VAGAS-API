@@ -11,3 +11,4 @@ Este projeto é uma API RESTful criada com Node.js, Express e Sequelize que impl
     • Body-parser
     • UUID para geração de IDs únicos
 
+
