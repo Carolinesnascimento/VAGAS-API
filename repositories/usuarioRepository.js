@@ -33,7 +33,10 @@ async function update(id, { nome, email, senha }) {
   return null;
 }
 
-
+// Busca usuário pelo email e senha
+async function findOne({ email, senha }) {
+  return await Usuario.findOne({ email, senha });
+}
 
 module.exports = {
   findAll,
@@ -41,4 +44,5 @@ module.exports = {
   create,
   update,
   remove,
+  findOne,
 };

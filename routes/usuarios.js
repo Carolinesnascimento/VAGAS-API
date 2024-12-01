@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const router = express.Router();
 const usuarioRepository = require('../repositories/usuarioRepository');
@@ -18,6 +16,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/login', async (req, res) => {
+  try {
+    const { email, senha } = req.query;
+
+    //console.log('Parâmetros recebidos:', { email, senha }); // Verifica os parâmetros
+
+    const user = await usuarioRepository.findOne({ email, senha });
+    //console.log('Resultado da consulta:', user); // Loga o resultado da consulta
+
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+  } catch (err) {
+    console.error('Erro no login:', err); // Loga erros
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Retorna o usuario pelo id
 router.get('/:id', async (req, res) => {
   try {
@@ -32,28 +51,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-/*
-// Retorna o usuário pelo email e senha
-router.get('/login', async (req, res) => {
-  try {
-    const { email, senha } = req.query; // Captura os parâmetros da query string
 
-    console.log(email);
 
-    if (!email || !senha) {
-      return res.status(400).json({ error: 'Email e senha são obrigatórios' });
-    }
 
-    const user = await usuarioRepository.findOne({ email, senha }); // Filtra pelo email e senha
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ error: 'Usuário não encontrado' });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});*/
 
 
 // Cria uma nova vaga
