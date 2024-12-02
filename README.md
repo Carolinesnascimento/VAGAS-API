@@ -23,6 +23,8 @@ Este projeto é uma API RESTful criada com Node.js, Express e Sequelize que impl
 
 ### Estrutura do Projeto
 
+Abaixo está a estrutura básica do projeto:
+
 - **server.js** - Arquivo principal da aplicação que inicia o servidor.
 - **config/database.js** - Configuração do Sequelize e do banco de dados SQLite.
 - **routes/usuarios.js** - Rotas para o CRUD de Usuários.
